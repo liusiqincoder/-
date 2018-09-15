@@ -93,5 +93,31 @@ JavaBean技术    提高代码的重用性
   empty运算符 判断对象或变量是否为空  ${not empty session.username}
   隐含对象  pgeContext,param,header,cookie,pageScope
   
-  
+  (2108.9.15)
+  Servlet  独立于平台和协议的特性，动态生成web页面
+  功能；(1) 创建并返回一个包含基于客户请求性质的动态内容的完整的 HTML 页面。
+       (2) 创建可嵌入到现有 HTML 页面中的一部分 HTML 页面（ HTML 片段）。
+       (3) 与其它服务器资源（包括数据库和基于 Java 的应用程序）进行通信。
+       (4) 用多个客户机处理连接，接收多个客户机的输入，并将结果广播到多个客户机上。
+          例如， Servlet 可以是多参与者的游戏服务器。
+       (5) 当允许在单连接方式下传送数据的情况下，在浏览器上打开服务器至 applet 的新连接，
+           并将该连接保持在打开状态。当允许客户机和服务器简单、高效地执行会话的情况下， a
+           pplet 也可以启动客户浏览器和服务器之间的连接。可以通过定制协议或标准（如 IIOP ）进行通信。
+       (6) 对特殊的处理采用 MIME 类型过滤数据，例如图像转换和服务器端包括（ SSI ）。
+       (7) 将定制的处理提供给所有服务器的标准例行程序。例如， Servlet 可以修改如何认证用户。
+  生命周期；加载，实例化，初始化(init())，处理客户请求(service())，卸载(destroy())
+       初始化 init()
+         以下情况Tomcat自动装入Servlet：已设置servlet的自动装入选项;客户的首次请求。（创建一个servlet实例并调用init）
+       处理请求 service()
+         对于客户机的请求，服务器会创建请求和相应对象
+       终止 destroy()
+  javax.servlet.Servlet接口
+  javax.servlet.GenericServlet接口
+       与Http无关的Servlet，只需实现service（）即可实现
+  javax.servlet.HttpServletRequest接口
+       获取客户端的http请求
+  javax.servlet.HttpServletResponse接口
+       向客户端发送请求
+  javax.servlet.HttpServlet接口
+       通常继承此类开发servlet，只需实现doGet()和dopost（）方法
   
