@@ -120,4 +120,31 @@ JavaBean技术    提高代码的重用性
        向客户端发送请求
   javax.servlet.HttpServlet接口
        通常继承此类开发servlet，只需实现doGet()和dopost（）方法
+（2018.9.17）
+配置Servlet
+   1.在类上注解 格式为：@WebServlet("/URL")
+   2.配置web.xml
+向客户输出信息
+   PrintWriter out=response.getWriter();
+Servlet生成HTML
+   response.setContentType("text/html;charset=UTF-8")
+接受客户提交参数
+   request.getParameter(name);
+获取内置对象
+  eg.  request.getSession();
   
+实现include和forward动作需要使用RequestDispatcher对象
+  RequestDispatcher dispatcher=request.getRequestDispatcher("URL")//URL相对网站根路径则用/URL
+  或者使用
+     ServletContext sc=getServletContext();
+     RequestDispatcher dispatcher=sc.getRequestDispatcher("URL")
+  RequestDispatcher定义了forward(request,response)和include(request,response)
+Servlet过滤器 服务器与客户端请求与响应的中间层组件，在实际项目开发中Servlet过滤器主要用于
+             对浏览器的请求进行过滤处理，将过滤后的请求再转给下一个资源
+     配置filter：1.在web.xml映射为URL或者在java类中注释
+                  语法：@WebFilter(dispatcherTypes=(DispatcherType.REQUEST,DispatcherType.FOEWARD,
+                       DispatcherType.INCLUDE,DispatcherType.ERROR),urlPatterns={"/*"})
+                2.编写web.xml,在<filter></filter>（可多个）用<filter-name>和<filter-class>指定filter
+    为filter设置url可以用<filter-mapping>的<filter-name>和<url-pattern>
+    dispatcher可以指定过滤器的请求类型
+  Filter接口  init,doFilter,destroy 
