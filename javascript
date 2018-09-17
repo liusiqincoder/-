@@ -249,3 +249,91 @@ Date
     toUTCString()将当日的日期（根据 UTC）转换为字符串
     getDay() 和数组来显示星期，而不仅仅是数字
     
+（2018.9.17）
+js改变css样式
+    document.getElementById(id).style.property=新样式
+创建数组
+     var myCars=new Array("Saab","Volvo","BMW");
+     var myCars=["Saab","Volvo","BMW"];
+     你可以在一个数组中包含对象元素、函数、数组
+Math对象
+     方法
+     round(),random(),max().min()
+     常量
+     Math.E,Math.PI,Math.SQRT2,Math.SQRT1_2,Math.LN2,Math.LN10,Math.LOG2E,Math.LOG10E
+Regexp 正则表达式对象
+     语法
+       var patt=new RegExp(pattern,modifiers);
+       或更简单的方法
+       var patt=/pattern/modifiers; 
+     实例 1
+       在字符串中不区分大小写找"runoob"
+       var str = "Visit RUnoob";
+       var patt1 = /runoob/i;
+       i - 修饰符是用来执行不区分大小写的匹配。
+       g - 修饰符是用于执行全文的搜索（而不是在找到第一个就停止查找,而是找到所有的匹配）。
+     方法
+        test()方法搜索字符串指定的值，根据结果并返回真或假。
+        exec() 方法检索字符串中的指定值。返回值是被找到的值。如果没有发现匹配，则返回 null。
+        
+ Window对象
+     Window 方法
+       window.open() - 打开新窗口
+       window.close() - 关闭当前窗口
+       window.moveTo() - 移动当前窗口
+       window.resizeTo() - 调整当前窗口的尺寸
+     Window尺寸
+       实用的 JavaScript 方案（涵盖所有浏览器）：
+      实例
+       var w=window.innerWidth
+       || document.documentElement.clientWidth
+       || document.body.clientWidth;
+       var h=window.innerHeight
+       || document.documentElement.clientHeight
+       || document.body.clientHeight; 
+Window  screen
+    screen.availWidth - 可用的屏幕宽度
+    screen.availHeight - 可用的屏幕高度
+Window Location
+    location.hostname 返回 web 主机的域名
+    location.pathname 返回当前页面的路径和文件名
+    location.port 返回 web 主机的端口 （80 或 443）
+    location.protocol 返回所使用的 web 协议（http:// 或 https://）
+Window history
+    history.back() - 与在浏览器点击后退按钮相同
+    history.forward() - 与在浏览器中点击向前按钮相同
+window.navigator 对象在编写时可不使用 window 这个前缀。
+实例
+<div id="example"></div>
+<script>
+txt = "<p>浏览器代号: " + navigator.appCodeName + "</p>";
+txt+= "<p>浏览器名称: " + navigator.appName + "</p>";
+txt+= "<p>浏览器版本: " + navigator.appVersion + "</p>";
+txt+= "<p>启用Cookies: " + navigator.cookieEnabled + "</p>";
+txt+= "<p>硬件平台: " + navigator.platform + "</p>";
+txt+= "<p>用户代理: " + navigator.userAgent + "</p>";
+txt+= "<p>用户代理语言: " + navigator.systemLanguage + "</p>";
+document.getElementById("example").innerHTML=txt;
+</script> 
+    由于 navigator 可误导浏览器检测，使用对象检测可用来嗅探不同的浏览器。
+    由于不同的浏览器支持不同的对象，您可以使用对象来检测浏览器。例如，由于只有 Opera 支持属性 "window.opera"，您可以据此识别出 Opera。
+window.confirm("sometext");
+window.prompt("sometext","defaultvalue");
+
+在 JavaScritp 中使用计时事件是很容易的，两个关键方法是:
+    setInterval() - 间隔指定的毫秒数不停地执行指定的代码。
+      window.setInterval("javascript function",milliseconds);
+      停止执行
+      window.clearInterval(intervalVariable)
+    setTimeout() - 在指定的毫秒数后执行指定代码。
+      myVar= window.setTimeout("javascript function", milliseconds);
+      停止执行  window.clearTimeout(timeoutVariable)
+Cookie 
+    读取 cookie： var x = document.cookie;
+    修改 cookie 类似于创建 cookie，如下所示：
+       document.cookie="username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 GMT; path=/";
+    删除Cookie只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
+       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    
+
+
