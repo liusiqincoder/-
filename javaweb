@@ -90,11 +90,12 @@ JavaBean技术    提高代码的重用性
            3.list集合读取 ${sessionScope.citys[0]}
            3.map集合读取  ${applicationScope.citys[0]}
   算术、关系、逻辑运算符，条件运算符   同java
-  empty运算符 判断对象或变量是否为空  ${not empty session.username}
+  empty运算符 判断对象或变量是否为空  ${not empty session.username}    
   隐含对象  pgeContext,param,header,cookie,pageScope
   
   (2108.9.15)
   Servlet  独立于平台和协议的特性，动态生成web页面
+        继承自HttpServlet（覆盖goGet和doPost方法）
   功能；(1) 创建并返回一个包含基于客户请求性质的动态内容的完整的 HTML 页面。
        (2) 创建可嵌入到现有 HTML 页面中的一部分 HTML 页面（ HTML 片段）。
        (3) 与其它服务器资源（包括数据库和基于 Java 的应用程序）进行通信。
@@ -130,15 +131,19 @@ Servlet生成HTML
    response.setContentType("text/html;charset=UTF-8")
 接受客户提交参数
    request.getParameter(name);
-获取内置对象
+获取内置对象  由HttpServletRequest获取session和application
   eg.  request.getSession();
-  
+       ServletContext context=getServletContext();
+       
 实现include和forward动作需要使用RequestDispatcher对象
   RequestDispatcher dispatcher=request.getRequestDispatcher("URL")//URL相对网站根路径则用/URL
   或者使用
      ServletContext sc=getServletContext();
      RequestDispatcher dispatcher=sc.getRequestDispatcher("URL")
   RequestDispatcher定义了forward(request,response)和include(request,response)
+  
+  WEB-INF是一个安全目录，放在里面的JSP页面通过URl访问无效，但可以通过Requestdispatcher的forward访问
+  
 Servlet过滤器 服务器与客户端请求与响应的中间层组件，在实际项目开发中Servlet过滤器主要用于
              对浏览器的请求进行过滤处理，将过滤后的请求再转给下一个资源
      配置filter：1.在web.xml映射为URL或者在java类中注释
