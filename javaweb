@@ -155,3 +155,39 @@ Servlet过滤器 服务器与客户端请求与响应的中间层组件，在实
   Filter接口  init,doFilter,destroy 
   
   常用标签JSTL
+用taglib指令将JSTL库导入JSP<%@ taglib prefix="c" uri=http://java.sun.com/jsp/jstl/core %>
+    输出标签 <c:out value="表达式" [escapeXML="true|false"] default="默认值" />
+             escapeXML允许标签自动转义<,>,&之类的XML类型字符
+    迭代标签   c:forEach和c:forTokens
+       c:forEach  items  制定遍历对象   var每次遍历时的变量名  
+                  begin  遍历开始时的索引值     end。。。结束。。   step遍历步长
+                  <c:forEach items="${test}" var="test" />
+                  需要将request.setAttribute将items遍历的对象添加到页面中
+    条件标签 c:if,c:choose,c:when,c:otherwise
+        <c:if test="条件" />
+        c:choose与c:when和c:otherwise标签一起使用，作用和switch-case-default差不多
+        c:when和c:if差不多，有test,只要有一个c:when为true则执行后跳出c:choose
+        c:otherwise当所有的c:when都为false才执行
+     变量操作符
+         <c:set var="attributeName" value="someValue" [scope="varScope"] />
+           或<c:set value="someValue" [scope="varScope"]>someValue</c:set>
+         对于对象  <c:set target="beanName" property="propertyName" [scope="varScope"]>someValue</c:set>
+         如果c:set标签里的值为null,则相当把变量或对象的某个属性置为null
+         <c:remove var="attributeName" />
+      URL相关标签
+         c:import  作用和include，jsp:include差不多，但后两者不能导入html全部页面，却不能导入其他服务器的html文件
+                                                   但c:import能
+               属性：url,context指明应用的上下文，var保存导入内容
+                    scope指定变量的作用域，charEncoding导入资源使用的编码
+         c:url   tomcat从Cookie读取SessionID或从url读取，c:url可以对url进行编码
+            <c:url value="URL" [var="varName"] [scope="varScope"] [context="context"] />
+            或 <c:url value.. [var...] [scope...] [context....] > [<c:param />] </c:url>
+            
+      c:param标签   为c:import,c:url和c:redirect提供参数
+          <c:param name="paramName" value="paramValue" />
+      c:redirect标签  <c:redirect url="URL" [context="context"]>  [<c:param />] </c:redirect>
+  自定义标签  需要定义以下3个组件：
+      1.标签处理类  继承SimpleTagSupport
+           必须有无参构造器，执行代码放在doTag里
+      2.TLD文件  标签库描述文件
+      3.使用标签库的JSP文件
