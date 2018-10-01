@@ -190,4 +190,8 @@ Servlet过滤器 服务器与客户端请求与响应的中间层组件，在实
       1.标签处理类  继承SimpleTagSupport
            必须有无参构造器，执行代码放在doTag里
       2.TLD文件  标签库描述文件
+           向服务器标识这个类，并将其与特定的XML标记名称相关联。通过一个XML格式的TLD文件完成（放在WEB-INF目录下）
       3.使用标签库的JSP文件
+    标签处理类   可以为自定义标签设置属性，在类内部的属性
+                在tld里用attribute标记（name,required,[rtexprvalue]）,required为true但页面未设置该标签属性，页面翻译会出错
+                标签体，想要使用标签体，需要在doTag里获取JspFragment实例调用  getJspBody().invoke(null)
